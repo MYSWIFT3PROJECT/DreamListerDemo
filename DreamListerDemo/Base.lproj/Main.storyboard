@@ -41,7 +41,7 @@
                                 <rect key="frame" x="16" y="132" width="288" height="436"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="135" id="Qep-pP-i2Y" customClass="ItemCell" customModule="DreamListerDemo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="135" id="Qep-pP-i2Y" customClass="ItemCell" customModule="DreamListerDemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="288" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qep-pP-i2Y" id="3iQ-dS-mOd">
@@ -144,7 +144,7 @@
                     <connections>
                         <outlet property="segementController" destination="Wza-g0-GFN" id="Rrk-jv-Oe7"/>
                         <outlet property="tableView" destination="fTY-It-byT" id="XZQ-eK-fy8"/>
-                        <segue destination="HUB-ps-cPw" kind="show" identifier="ItemDetailVC" id="Lt5-f8-t6c"/>
+                        <segue destination="HUB-ps-cPw" kind="show" identifier="itemDetailVC" id="Lt5-f8-t6c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -163,13 +163,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bm-0a-TdA">
-                                <rect key="frame" x="16" y="80" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="ODF-Jr-aSc"/>
-                                    <constraint firstAttribute="width" constant="100" id="tYa-wQ-rVk"/>
-                                </constraints>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e9z-1f-iTm">
                                 <rect key="frame" x="16" y="80" width="100" height="100"/>
                                 <constraints>
@@ -177,6 +170,16 @@
                                     <constraint firstAttribute="width" constant="100" id="wuf-R7-DI8"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bm-0a-TdA">
+                                <rect key="frame" x="16" y="80" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="ODF-Jr-aSc"/>
+                                    <constraint firstAttribute="width" constant="100" id="tYa-wQ-rVk"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="addImgePressed:" destination="HUB-ps-cPw" eventType="touchUpInside" id="MIj-lu-m7N"/>
+                                </connections>
+                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="am9-E4-d0R">
                                 <rect key="frame" x="125" y="80" width="179" height="35"/>
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
@@ -232,6 +235,9 @@
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="SavePressed:" destination="HUB-ps-cPw" eventType="touchUpInside" id="KwC-Zw-Vtl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -263,8 +269,18 @@
                     <navigationItem key="navigationItem" title="Add/Edit" id="x56-xv-o7r">
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="rqY-US-f1v">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="deletePressed:" destination="HUB-ps-cPw" id="ZZ3-77-tQH"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="detailField" destination="hYd-NS-QHO" id="TfR-uS-UCa"/>
+                        <outlet property="imagePickerView" destination="e9z-1f-iTm" id="fxz-lz-lT7"/>
+                        <outlet property="pickerView" destination="EOZ-B2-VIF" id="9Or-T3-wxD"/>
+                        <outlet property="priceField" destination="F8S-Oi-jbh" id="nle-jM-MHX"/>
+                        <outlet property="titleField" destination="am9-E4-d0R" id="MaE-Jm-xlb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVz-gM-s7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -42,6 +42,21 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let objs = controller.fetchedObjects, objs.count > 0{
+            let item = objs[indexPath.row]
+            performSegue(withIdentifier: "itemDetailVC", sender: item)
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "itemDetailVC" {
+            if let destination = segue.destination as? ItemDetailVC{
+                if let item = sender as? Item{
+                    destination.itemToEdit = item
+                }
+            }
+        }
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
@@ -55,6 +70,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         fetchRequest.sortDescriptors = [dataSort]
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         self.controller = controller
+        controller.delegate = self
         do{
             try self.controller.performFetch()
         }catch{
